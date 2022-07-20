@@ -1,3 +1,8 @@
+const pwd = require('./pwd');
+const ls = require('./ls');
+const cat = require('./cat')
+const fs = require('fs');
+
 //Output a prompt
 process.stdout.write('prompt > ');
 
@@ -5,7 +10,13 @@ process.stdout.write('prompt > ');
 process.stdin.on('data', (data) => {
   const cmd = data.toString().trim(); //remove the newline
   if(cmd === 'pwd'){
-    process.stdout.write(process.cwd());
+    pwd();
+  }
+  if(cmd === 'ls'){
+    ls();
+  }
+  if(cmd.split(' ')[0] === 'cat'){
+    cat(cmd.split(' ')[1]);
   }
   process.stdout.write('\nprompt > ');
 });
